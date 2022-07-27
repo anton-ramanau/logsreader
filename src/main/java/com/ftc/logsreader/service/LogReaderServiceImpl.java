@@ -1,35 +1,29 @@
 package com.ftc.logsreader.service;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
+import com.ftc.logsreader.configuration.Config;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @Service
 public class LogReaderServiceImpl implements LogReaderService {
 
-    public static String ENV_NAME_PATH_TO_LOG_FILE = "PATH_TO_LOG_FILE";
-    private final Environment environment;
+    private final Config config;
 
-    public LogReaderServiceImpl(Environment environment) {
-        this.environment = environment;
+    public LogReaderServiceImpl(Config config) {
+        this.config = config;
     }
 
     @Override
     public List<String> getLogsAsLines() {
-        Path logPath = Paths.get(environment.getProperty(ENV_NAME_PATH_TO_LOG_FILE));
         try {
-            return Files.readAllLines(logPath);
+            return Files.readAllLines(config.getPathToLogFile());
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
-
 
 }
