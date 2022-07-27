@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.ftc</groupId>
     <artifactId>logsreader</artifactId>
-    <version>v.1.0-SNAPSHOT</version>
+    <version>v.1.0</version>
     <name>logsreader</name>
     <description>logsreader</description>
     <properties>
