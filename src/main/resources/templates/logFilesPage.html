@@ -7,8 +7,11 @@
 <body>
 <main>
     <div class="container-fluid">
-        <ul class="list-group" th:each="log : ${logs}">
-            <li class="list-group-item pb-1 pt-0" th:text="${log}">log line</li>
+        <h1 class="h2">Available log files</h1>
+        <ul class="list-group col-2" th:each="file : ${files}">
+            <li class="list-group-item">
+                <a class="btn bg-primary" th:text="${file}" th:href="'/logs/' + ${file.toString()}">log file</a>
+            </li>
         </ul>
     </div>
 </main>

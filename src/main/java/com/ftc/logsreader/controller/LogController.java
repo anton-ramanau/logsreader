@@ -14,9 +14,15 @@ public class LogController {
         this.logReaderService = logReaderService;
     }
 
-    @GetMapping("/logs")
-    public String getLogsView(Model model) {
-        model.addAttribute("logs", logReaderService.getLogsAsLines());
+    @GetMapping("/")
+    public String getLogsFiles(Model model) {
+        model.addAttribute("files", logReaderService.getLogFilesName());
+        return "logFilesPage";
+    }
+
+    @GetMapping("/logs/{logFile}")
+    public String getLogsView(@PathVariable String logFile, Model model) {
+        model.addAttribute("logs", logReaderService.getLogsFromFile(logFile));
         return "logsView";
     }
 }
