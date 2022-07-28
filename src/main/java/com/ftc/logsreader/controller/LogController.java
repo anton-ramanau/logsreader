@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LogController {
@@ -24,5 +25,11 @@ public class LogController {
     public String getLogsView(@PathVariable String logFile, Model model) {
         model.addAttribute("logs", logReaderService.getLogsFromFile(logFile));
         return "logsView";
+    }
+
+    @PostMapping("/logs/{logFile}/clean")
+    public String cleanLogsFromFile(@PathVariable String logFile) {
+        logReaderService.cleanLogsFromFile(logFile);
+        return "redirect:/logs/" + logFile;
     }
 }
