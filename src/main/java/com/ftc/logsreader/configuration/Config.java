@@ -17,7 +17,11 @@ public class Config {
     }
 
     public Path getLogsDirectory() {
-        Path path = Paths.get(environment.getProperty("LOGS_DIRECTORY"));
+        String env = environment.getProperty("LOGS_DIRECTORY");
+        if (env == null || env.isEmpty()) {
+            env = "logs";
+        }
+        Path path = Paths.get(env);
         File directory = path.toFile();
         if (!directory.exists()) {
             throw new IllegalArgumentException("LOGS_DIRECTORY doesn't exist");
