@@ -4,5 +4,7 @@ import java.util.List;
 
 public interface LogReaderService {
 
-    List<String> getLogsAsLines();
+    List<String> getLogFilesName();
+
+    List<String> getLogsFromFile(String fileName);
 }
